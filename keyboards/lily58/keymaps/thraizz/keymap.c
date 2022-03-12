@@ -194,9 +194,11 @@ static void render_anim(void) {
 //
 // OLED display rendering
 //
-void oled_task_user(void) {
-    if (is_keyboard_master()) {
+bool oled_task_user(void) {
+    if (!is_keyboard_master()) {
         // Left side
         render_anim();
-    } 
+        return true;
+    }
+    return false;
 } 
