@@ -194,11 +194,12 @@ static void render_anim(void) {
 //
 // OLED display rendering
 //
+const char *read_logo(void);
 bool oled_task_user(void) {
-    if (!is_keyboard_master()) {
-        // Left side
-        render_anim();
-        return true;
-    }
-    return false;
+  if (is_keyboard_master()) {
+    render_anim();
+  } else {
+    oled_write(read_logo(), false);
+  }
+  return false;
 } 
